@@ -8,49 +8,46 @@
 #else: 
  #   pass
 # Solicita ao usuário que digite seu nome
-try:
-    nome = input("Digite seu nome: ")
-
+while True:
+    nome_usuario = input('Digite seu nome: ')
     # Verifica se o nome está vazio
-    if len(nome) == 0:
-        raise ValueError("O nome não pode estar vazio.")
-        exit()
+    if len(nome_usuario) == 0:
+        print("O nome não pode estar vazio.")
+        continue
     # Verifica se há números no nome
-    elif any(char.isdigit() for char in nome):
-        raise ValueError("O nome não deve conter números.")
-        exit()
+    elif any(char.isdigit() for char in nome_usuario):
+        print("O nome não deve conter números.")
+        continue
     else:
-        print("Nome válido:", nome)
-except ValueError as e:
-    print(e)
-    exit()
+        print("Nome válido:", nome_usuario)
+        break
+
 
 # Solicita ao usuário que digite o valor do seu salário e converte para float
 
-try:
+while True:
     salario = float(input("Digite o valor do seu salário: "))
     if salario < 0:
         print("Por favor, digite um valor positivo para o salário.")
-except ValueError:
-    print("Entrada inválida para o salário. Por favor, digite um número.")
-    exit()
+        continue
+    else:
+        break
 
-# Solicita ao usuário que digite o valor do bônus recebido e converte para float
-try:
+while True:
     bonus = float(input("Digite o valor do bônus recebido: "))
-    if bonus < 0:
-        print("Por favor, digite um valor positivo para o bônus.")
-except ValueError:
-    print("Entrada inválida para o bônus. Por favor, digite um número.")
-    exit()
+    if bonus >= 0:
+        break
+    else:
+        print("Entrada inválida para o bônus. Por favor, digite um número positivo.")
+        continue
 
 bonus_recebido = 1000 + salario * bonus  # Exemplo simples de KPI
 
 # Imprime as informações para o usuário
-print(f"{nome}, seu salário é R${salario:.2f} e seu bônus final é R${bonus_recebido:.2f}.")
+print(f"{nome_usuario}, seu salário é R${salario:.2f} e seu bônus final é R${bonus_recebido:.2f}.")
 
 # 4) Calcule o valor do bônus final
 bonus_final = bonus * salario
 
 # 5) Imprime a mensagem personalizada incluindo o nome do usuário, salário e bônus
-print(f'Nome: {nome}\nSalário: {salario}\nBônus:{bonus_final}')
+print(f'Nome: {nome_usuario}\nSalário: {salario}\nBônus:{bonus_final}')
