@@ -9,7 +9,7 @@
  #   pass
 # Solicita ao usuário que digite seu nome
 while True:
-    nome_usuario = input('Digite seu nome: ')
+    nome_usuario: str = input('Digite seu nome: ')
     # Verifica se o nome está vazio
     if len(nome_usuario) == 0:
         print("O nome não pode estar vazio.")
@@ -26,7 +26,7 @@ while True:
 # Solicita ao usuário que digite o valor do seu salário e converte para float
 
 while True:
-    salario = float(input("Digite o valor do seu salário: "))
+    salario: float = float(input("Digite o valor do seu salário: "))
     if salario < 0:
         print("Por favor, digite um valor positivo para o salário.")
         continue
@@ -41,13 +41,13 @@ while True:
         print("Entrada inválida para o bônus. Por favor, digite um número positivo.")
         continue
 
-bonus_recebido = 1000 + salario * bonus  # Exemplo simples de KPI
+bonus_recebido: float = 1000 + salario * bonus  # Exemplo simples de KPI
 
 # Imprime as informações para o usuário
 print(f"{nome_usuario}, seu salário é R${salario:.2f} e seu bônus final é R${bonus_recebido:.2f}.")
 
 # 4) Calcule o valor do bônus final
-bonus_final = bonus * salario
+bonus_final: float = bonus * salario
 
 # 5) Imprime a mensagem personalizada incluindo o nome do usuário, salário e bônus
 print(f'Nome: {nome_usuario}\nSalário: {salario}\nBônus:{bonus_final}')
