@@ -87,33 +87,66 @@ for transacao in transacoes:
 ### Exercício 6. Contagem de Palavras em Textos
 # Objetivo:** Dado um texto, contar quantas vezes cada palavra única aparece nele.
 texto = "A tecnologia faz parte do cotidiano das pessoas e está presente em diversas áreas da sociedade. Muitas pessoas utilizam a tecnologia para estudar, trabalhar, se comunicar e se divertir. O avanço da tecnologia também trouxe mudanças importantes para a educação e para o mercado de trabalho. Por outro lado, algumas pessoas acreditam que o uso excessivo da tecnologia pode causar problemas sociais e dificuldades de comunicação."
+texto = texto.lower()
+texto = texto.replace('.', '')
+texto = texto.replace(',', '')
 palavras = texto.split()
+dicionario = {}
+
+for palavra in palavras:
+    if palavra not in dicionario:
+        dicionario[palavra] = 1
+    else:
+        dicionario[palavra] += 1
+print(dicionario)
+
 
 ### Exercício 7. Normalização de Dados
 # Objetivo:** Normalizar uma lista de números para que fiquem na escala de 0 a 1.
+numeros = [42, 7, 89, 15, 63, 28, 91, 3, 56, 74, 20]
+numeros.sort()
+n_em_escala = []
+for n in numeros:
+    e = (n - min(numeros)) / (max(numeros) - min(numeros))
+    n_em_escala.append(f'{e:.2f}')
+print(n_em_escala)
 
 ### Exercício 8. Filtragem de Dados Faltantes
 # Objetivo:** Dada uma lista de dicionários representando dados de usuários, filtrar aqueles que têm um campo específico faltando
+usuarios = [
+    {"nome": "Lucas", "idade": 17, "email": "lucas@email.com"},
+    {"nome": "Mariana", "idade": 16},
+    {"nome": "Carlos", "email": "carlos@gmail.com"},
+    {"nome": "Ana", "idade": 18, "email": "ana@yahoo.com"},
+    {"nome": "Fernanda"},
+    {"nome": "Roberto", "idade": 20},
+    {"nome": "Julia", "email": "julia@outlook.com"},
+    {"nome": "Beatriz", "idade": 19, "email": "beatriz@email.com"}
+]
+for usuario in usuarios:
+    if 'nome' not in usuario or 'idade' not in usuario or 'email' not in usuario:
+        print(f"{usuario['nome']} tem algum campo vazio.")
 
-### Exercício 9. Extração de Subconjuntos de Dados
-# Objetivo:** Dada uma lista de números, extrair apenas aqueles que são pares.
 
 ### Exercício 10. Agregação de Dados por Categoria
 # Objetivo:** Dado um conjunto de registros de vendas, calcular o total de vendas por categoria.
-
-### Exercícios com WHILE
-
-### Exercício 11. Leitura de Dados até Flag
-# Ler dados de entrada até que uma palavra-chave específica ("sair") seja fornecida.
-
-### Exercício 12. Validação de Entrada
-# Solicitar ao usuário um número dentro de um intervalo específico até que a entrada seja válida.
-
-### Exercício 13. Consumo de API Simulado
-# Simular o consumo de uma API paginada, onde cada "página" de dados é processada em loop até que não haja mais páginas.
-
-### Exercício 14. Tentativas de Conexão
-# Simular tentativas de reconexão a um serviço com um limite máximo de tentativas.
-
-### Exercício 15. Processamento de Dados com Condição de Parada
-# Processar itens de uma lista até encontrar um valor específico que indica a parada.
+vendas = [
+    {"produto": "Notebook", "categoria": "Eletrônicos", "valor": 3500},
+    {"produto": "Mouse", "categoria": "Eletrônicos", "valor": 120},
+    {"produto": "Teclado", "categoria": "Eletrônicos", "valor": 200},
+    {"produto": "Camiseta", "categoria": "Roupas", "valor": 80},
+    {"produto": "Calça Jeans", "categoria": "Roupas", "valor": 150},
+    {"produto": "Tênis", "categoria": "Roupas", "valor": 300},
+    {"produto": "Arroz", "categoria": "Alimentos", "valor": 35},
+    {"produto": "Feijão", "categoria": "Alimentos", "valor": 28},
+    {"produto": "Refrigerante", "categoria": "Alimentos", "valor": 12},
+    {"produto": "Livro Python", "categoria": "Livros", "valor": 95},
+    {"produto": "Livro Matemática", "categoria": "Livros", "valor": 110}
+]
+vendasCategoria = {}
+for produto in vendas:
+    if produto['categoria'] not in vendasCategoria:
+        vendasCategoria[produto['categoria']] = produto['valor']
+    else:
+        vendasCategoria[produto['categoria']] += produto['valor']
+print(vendasCategoria)
